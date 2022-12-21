@@ -12,6 +12,7 @@
   "author": "B",
   "license": "ISC",
   "dependencies": {
+    "@mrbabalafe/valorant-api-helper": "^0.0.1",
     "@types/cors": "^2.8.13",
     "axios": "^1.2.1",
     "cors": "^2.8.5",

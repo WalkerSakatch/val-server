@@ -3,7 +3,7 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import { getMaps, getVersion, getWeapons } from "valorant-api-helper";
+import { getMaps, getVersion, getWeapons } from "@mrbabalafe/valorant-api-helper";
 
 // DataDragon Equiv:
 // https://valorant.dyn.riotcdn.net/x/content-catalog/PublicContentCatalog-release-XX.XX.zip
