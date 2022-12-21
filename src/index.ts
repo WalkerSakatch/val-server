@@ -24,7 +24,7 @@ app.get('/version', async(req, res) => {
 app.get('/weapons', async(req, res) => {
     let data = await getWeapons();
     res.statusCode = data.status;
-    res.send(data.data);
+    res.send(data);
 });
 
 app.get('/maps', async(req, res) => {
