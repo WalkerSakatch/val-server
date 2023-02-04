@@ -3,7 +3,7 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import { getMaps, getVersion, getWeapons } from "@mrbabalafe/valorant-api-helper";
+import { getMaps, getVersion, getWeapons, getAgents } from "@mrbabalafe/valorant-api-helper";
 
 // DataDragon Equiv:
 // https://valorant.dyn.riotcdn.net/x/content-catalog/PublicContentCatalog-release-XX.XX.zip
@@ -30,5 +30,11 @@ app.get('/weapons', async(req, res) => {
 app.get('/maps', async(req, res) => {
     let data = await getMaps();
     res.statusCode = data.status;
-    res.send(data.data)
+    res.send(data.data);
 });
+
+app.get('/agents', async(req, res) => {
+    let data = await getAgents();
+    res.statusCode = data.status;
+    res.send(data.data);
+})
