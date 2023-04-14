@@ -43,7 +43,9 @@ app.get('/agents', async(req, res) => {
 
 app.post('/auth/login', async(req, res) => {
     let body = req.body;
+    console.log("BODY: ", body)
     let loginResponse = await login(body.riotClientBuild, body.username, body.password);
+    console.log("LOGIN RESPONSE: ", loginResponse)
     res.send(loginResponse);
 });
 
@@ -67,7 +69,7 @@ app.put('/auth/region', async(req, res) => {
 
 app.get('/player/info', async(req, res) => {
     let access_token = req.headers.access_token as string;
-    console.log("access_token", access_token)
+    // console.log("access_token", access_token)
     let playerInfoResp = await getPlayerInfo(access_token)
     res.send(playerInfoResp)
 });
