@@ -18,30 +18,35 @@ app.listen(process.env.PORT, () => {
 });
 
 app.get('/version', async(req, res) => {
+    console.log("/version")
     let data = await getVersion();
     res.statusCode = data.status;
     res.send(data.data)
 });
 
 app.get('/weapons', async(req, res) => {
+    console.log("/weapons")
     let data = await getWeapons();
     res.statusCode = data.status;
     res.send(data);
 });
 
 app.get('/maps', async(req, res) => {
+    console.log("/maps")
     let data = await getMaps();
     res.statusCode = data.status;
     res.send(data.data);
 });
 
 app.get('/agents', async(req, res) => {
+    console.log("/agents")
     let data = await getAgents();
     res.statusCode = data.status;
     res.send(data.data);
 });
 
 app.post('/auth/login', async(req, res) => {
+    console.log("/auth/login")
     let body = req.body;
     console.log("BODY: ", body)
     let loginResponse = await login(body.riotClientBuild, body.username, body.password);
@@ -50,24 +55,28 @@ app.post('/auth/login', async(req, res) => {
 });
 
 app.post('/auth/login2fa', async(req, res) => {
+    console.log("/auth/login2fa")
     let body = req.body;
     let loginResponse = await login2FA(body.code, body.riotClientBuild, body.cookies)
     res.send(loginResponse);
 });
 
 app.post('/auth/entitlements', async(req, res) => {
+    console.log("/auth/entitlements")
     let body = req.body;
     let entitlementsResponse = await getEntitlementsToken(body.access_token)
     res.send(entitlementsResponse);
 });
 
 app.put('/auth/region', async(req, res) => {
+    console.log("/auth/region")
     let body = req.body;
     let regionResponse = await getRegion(body.access_token, body.id_token);
     res.send(regionResponse);
 });
 
 app.get('/player/info', async(req, res) => {
+    console.log("/player/info")
     let access_token = req.headers.access_token as string;
     // console.log("access_token", access_token)
     let playerInfoResp = await getPlayerInfo(access_token)
@@ -75,6 +84,7 @@ app.get('/player/info', async(req, res) => {
 });
 
 app.get('/player/loadout', async(req, res) => {
+    console.log("/player/loadout")
     let access_token = req.headers.access_token as string;
     let entitlements_token = req.headers.entitlements_token as string;
     let shard = req.headers.shard as string;
