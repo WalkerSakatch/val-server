@@ -4,7 +4,8 @@ import bodyParser from "body-parser";
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import { getMaps, getVersion, getWeapons, getAgents, login, login2FA, getEntitlementsToken, getRegion, getPlayerInfo, getPlayerLoadout } from "@mrbabalafe/valorant-api-helper";
+import { getMaps, getVersion, getWeapons, getAgents, getSprays, login, login2FA, getEntitlementsToken, getRegion, getPlayerInfo, getPlayerLoadout } from "@mrbabalafe/valorant-api-helper";
+// import { getMaps, getVersion, getWeapons, getAgents, getSprays, login, login2FA, getEntitlementsToken, getRegion, getPlayerInfo, getPlayerLoadout } from "valorant-api-helper";
 
 // DataDragon Equiv:
 // https://valorant.dyn.riotcdn.net/x/content-catalog/PublicContentCatalog-release-XX.XX.zip
@@ -24,23 +25,34 @@ app.get('/version', async(req, res) => {
     res.send(data.data)
 });
 
-app.get('/weapons', async(req, res) => {
+//TODO: Make it so you can /weapons/uuid and get info for a particular weapon. Same w/ maps, agents, sprays
+app.get('/weapons/:uuid?', async(req, res) => {
     console.log("/weapons")
-    let data = await getWeapons();
-    res.statusCode = data.status;
-    res.send(data);
-});
-
-app.get('/maps', async(req, res) => {
-    console.log("/maps")
-    let data = await getMaps();
+    const data = req.params.uuid ? await getWeapons(req.params.uuid) : await getWeapons();
+    // let data = await getWeapons();
     res.statusCode = data.status;
     res.send(data.data);
 });
 
-app.get('/agents', async(req, res) => {
+app.get('/maps/:uuid?', async(req, res) => {
+    console.log("/maps")
+    const data = req.params.uuid ? await getMaps(req.params.uuid) : await getMaps();
+    // let data = await getMaps();
+    res.statusCode = data.status;
+    res.send(data.data);
+});
+
+app.get('/agents/:uuid?', async(req, res) => {
     console.log("/agents")
-    let data = await getAgents();
+    // let data = await getAgents();
+    const data = req.params.uuid ? await getAgents(req.params.uuid) : await getAgents();
+    res.statusCode = data.status;
+    res.send(data.data);
+});
+
+app.get('/sprays/:uuid?', async(req, res) => {
+    console.log(`/sprays/${req.params.uuid}`)
+    const data = req.params.uuid ? await getSprays(req.params.uuid) : await getSprays();
     res.statusCode = data.status;
     res.send(data.data);
 });
